@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+	mode: 'development',
 	entry: './src/index.ts',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -17,9 +18,9 @@ module.exports = {
 		})
 	],
 	devServer: {
-		contentBase: './dist',
+		allowedHosts: './dist',
 		https: true,
-		host: '0.0.0.0'
+		host: '192.168.100.2'
 	},
 	module: {
 		rules: [

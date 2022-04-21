@@ -2,38 +2,58 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	mode: 'development',
 	entry: './src/index.ts',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'index.js'
+		filename: 'index.js',
 	},
 	resolve: {
-		extensions: [".js", ".ts", ".wasm"]
+		extensions: ['.js', '.ts', '.wasm'],
 	},
+
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html',
-			filename: 'index.html'
+			filename: 'index.html',
+			favicon: 'assets/icons/favicon.png',
+			title: 'AR Image target',
+			minify: {
+				collapseWhitespace: true,
+				minifyCSS: true,
+			},
 		})
 	],
 	devServer: {
-		allowedHosts: './dist',
+		static: './dist/',
+		historyApiFallback: true,
 		https: true,
-		host: '192.168.100.2'
+		host: '0.0.0.0',
+		hot: true,
+		open: true,
 	},
 	module: {
 		rules: [
-			{ test: /\.ts?$/, loader: "ts-loader" },
+			{ test: /\.ts?$/, loader: 'ts-loader' },
 			{
-				test: /\.css$/i,
+				test: /\.(sa|sc|c)ss$/,
 				use: ['style-loader', 'css-loader'],
+			},
+
+			{
+				test: /\.(zpt|png|gif|glb|gltf|jpe?g|ogg|mp3|obj|fbx|wav|ttf|fnf|woff|stl|mp4|hdr|webm)$/,
+				use: [{
+					loader: 'file-loader',
+					options: {
+						outputPath: 'assets',
+						name: '[sha256:hash:base64:16].[ext]',
+					},
+				}],
 			},
 			{
 				test: /zcv\.wasm$/,
-				type: "javascript/auto",
-				loader: "file-loader"
+				type: 'javascript/auto',
+				loader: 'file-loader',
 			},
-		]
-	}
+		],
+	},
 };

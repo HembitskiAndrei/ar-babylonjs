@@ -36,7 +36,7 @@
     "@zappar/zappar-babylonjs-es6": "^0.3.30",
     "@zappar/zapworks-cli": "^1.0.0",
     "@zappar/imagetraining": "^2.0.0",
-    "@babylonjs/core": "^5.3.0",
-    "@babylonjs/loaders": "^5.3.0"
+    "@babylonjs/core": "^5.4.0",
+    "@babylonjs/loaders": "^5.4.0"
   }
 }

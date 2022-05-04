@@ -28,4 +28,4 @@ npm run build
 ```
 
 ## Target Image
-![Target Image](assets/targets/example-tracking-image.png)
+![Target Image](assets/targets/image.jpg)
